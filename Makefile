@@ -7,7 +7,7 @@ db:
 stop-db:
 	@docker-compose down
 
-stop-postgres:
+stop-pg:
 	@sudo systemctl stop postgresql
 
 create-migrations:

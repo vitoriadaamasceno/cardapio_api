@@ -23,23 +23,12 @@ class Usuario(Base):
     email: Mapped[str] = mapped_column(String, unique=True, nullable=False)
     password: Mapped[str] = mapped_column(String, nullable=False)
     role: Mapped[Role] = mapped_column(Enum(Role), nullable=False)
-    created_at: Mapped[TIMESTAMP] = mapped_column(TIMESTAMP, default=func.now())
-
-    cliente: Mapped["Cliente"] = relationship("Cliente", uselist=False, back_populates="usuario")
-    pedidos: Mapped[list["Pedido"]] = relationship("Pedido", back_populates="usuario")
-
-
-class Cliente(Base):
-    __tablename__ = "cliente"
-    
-    id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name: Mapped[str] = mapped_column(String, nullable=True)
     address: Mapped[str] = mapped_column(String, nullable=True)
     tel: Mapped[str] = mapped_column(String, nullable=True)
     created_at: Mapped[TIMESTAMP] = mapped_column(TIMESTAMP, default=func.now())
 
-    usuario_id: Mapped[int] = mapped_column(ForeignKey("usuario.id"))
-    usuario: Mapped["Usuario"] = relationship("Usuario", back_populates="cliente")
+    pedidos: Mapped[list["Pedido"]] = relationship("Pedido", back_populates="usuario")
 
 class Pedido(Base):
     __tablename__ = "pedidos"
