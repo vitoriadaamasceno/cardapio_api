@@ -1,0 +1,10 @@
+version: "3"
+services:
+  db:
+    image: postgres:11-alpine
+    environment:
+      POSTGRES_PASSWORD: cardapio
+      POSTGRES_USER: cardapio
+      POSTGRES_DB: cardapio
+    ports:
+      - "5432:5432"
