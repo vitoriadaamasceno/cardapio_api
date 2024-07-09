@@ -5,7 +5,7 @@ from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
 from restaurante.config.settings import settings
 
-engine = create_async_engine(settings.DATABASE_URL, echo=True) #criando a engine do banco de dados
+engine = create_async_engine(settings.DB_URL, echo=True) #criando a engine do banco de dados
 async_session = sessionmaker(
     engine, class_=AsyncSession, expire_on_commit=False #expirando a sessão após o commit e criando a class AsyncSession para poder usar o AsyncGenerator
 ) #criando a sessão do banco de dados

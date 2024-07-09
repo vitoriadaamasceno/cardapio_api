@@ -3,7 +3,7 @@ from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    DATABASE_URL: str = Field(default="postgresql+asyncpg://cardapio:cardapio@localhost/cardapio") #configura a url do banco de dados
+    DB_URL: str = Field(default='postgresql+asyncpg://cardapio:cardapio@localhost/cardapio') #configura a url do banco de dados
     
     
 settings = Settings()

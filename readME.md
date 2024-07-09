@@ -18,3 +18,8 @@ Em comum:
 - GET /cardapio
 - POST /login
 - POST-GET /chat
+
+
+Referencias :
+pydantic : https://docs.pydantic.dev/latest/concepts/fields/#default-values
+sqlachemy: https://docs.sqlalchemy.org/en/20/
