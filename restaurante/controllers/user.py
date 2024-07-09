@@ -2,8 +2,9 @@ from fastapi import APIRouter, Body, status, HTTPException
 from sqlalchemy.future import select
 
 from restaurante.contrib.dependencia import DatabaseDependency
-from restaurante.schemas.user import UserClient, Role
+from restaurante.schemas.user import UserClient, Role, UserResponse
 from restaurante.models.models import Usuario
+from restaurante.repository.user_repository import UserRepository
 
 router = APIRouter()
 
@@ -12,7 +13,7 @@ router = APIRouter()
     path="/",
     description="criar uma conta de usuário", 
     status_code=status.HTTP_201_CREATED, 
-    response_description="Usuário criado com sucesso"
+    response_model=UserResponse
 )
 async def create_user(
     db_session: DatabaseDependency, 
@@ -24,15 +25,14 @@ async def create_user(
     telefone= client.telefone
     endereco= client.endereco
     
-    email_exists = (await db_session.execute(
-        select(Usuario).filter_by(email=email_user))
-    ).scalars().first()
+    email_exists = await UserRepository.get_user_by_email(db_session, email_user)
     
     if email_exists:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Email já cadastrado"
         )
+   
     try:
         user = Usuario(
             name=nome,
@@ -42,12 +42,14 @@ async def create_user(
             tel=telefone,
             address=endereco
         )
-        db_session.add(user)
-        await db_session.commit()
-        await db_session.refresh(user)
         
-        return user
-    
+        await UserRepository.create_user(db_session, user)
+        
+        return UserResponse(
+            id=user.id,
+            detail="Usuário criado com sucesso",
+            created_at=user.created_at
+        )
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,

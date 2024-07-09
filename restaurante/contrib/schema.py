@@ -3,7 +3,7 @@ from datetime import datetime
 from pydantic import BaseModel
 class BaseSchema(BaseModel):
     class Config:
-        orm_mode = True # Converte snake_case para camelCase
+        anystr_strip_whitespace = True
         
 class Saida(BaseModel):
     id: int
