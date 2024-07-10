@@ -22,4 +22,5 @@ Em comum:
 
 Referencias :
 pydantic : https://docs.pydantic.dev/latest/concepts/fields/#default-values
+
 sqlachemy: https://docs.sqlalchemy.org/en/20/

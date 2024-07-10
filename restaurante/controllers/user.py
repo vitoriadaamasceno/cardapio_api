@@ -32,7 +32,6 @@ async def create_user(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Email já cadastrado"
         )
-   
     try:
         user = Usuario(
             name=nome,
