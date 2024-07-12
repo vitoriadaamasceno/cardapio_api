@@ -8,7 +8,7 @@ class Pedido(BaseModel):
     total: float
     descricao: str
     troco: float
-    status: Literal["PENDENTE", "PREPARANDO", "PRONTO", "ENTREGUE","CANCELADO"] = Field(default="PENDENTE")
+    status: Literal["RECEBIDO", "PREPARANDO", "EM ENTREGA", "ENTREGUE", "CANCELADO", "ATRASADO"]
     created_at: datetime = Field(default_factory=datetime.now)
 
     class Config:

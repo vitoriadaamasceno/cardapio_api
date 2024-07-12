@@ -1,8 +1,7 @@
 from fastapi import APIRouter, Body, status, HTTPException
-from sqlalchemy.future import select
 
 from restaurante.contrib.dependencia import DatabaseDependency
-from restaurante.schemas.user import UserClient, Role, UserResponse
+from restaurante.schemas.user import UserClient, Role, UserResponse, UserLogin
 from restaurante.models.models import Usuario
 from restaurante.repository.user_repository import UserRepository
 
@@ -10,7 +9,7 @@ router = APIRouter()
 
 #para acessar o banco de dados é necessario acessar a sessão do banco de dados para isso vou criar uma dependencia
 @router.post(
-    path="/",
+    path="",
     description="criar uma conta de usuário", 
     status_code=status.HTTP_201_CREATED, 
     response_model=UserResponse
@@ -55,4 +54,5 @@ async def create_user(
             detail=str(e)
         )
     
+
     
