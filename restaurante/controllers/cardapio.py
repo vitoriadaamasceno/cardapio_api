@@ -22,6 +22,13 @@ async def add_cardapio(
     descricao = cardapio.descricao
     preco = cardapio.preco
     
+    name_exists = await CardapioRepository.get_cardapio_by_name(db_session, nome)
+    if name_exists:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Nome já cadastrado"
+        )
+    
     try:
         cardapio = Cardapio(
             name=nome,
@@ -36,3 +43,19 @@ async def add_cardapio(
             detail=str(e)
         )
         
+@router.get(
+    path="",
+    description="Mostrar todos os items no cardapio", 
+    status_code=status.HTTP_200_OK
+)
+async def get_all_cardapio(
+    db_session: DatabaseDependency
+):
+    try:
+        cardapio_get_all = await CardapioRepository.get_cardapio(db_session)
+        return cardapio_get_all
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=str(e)
+        )

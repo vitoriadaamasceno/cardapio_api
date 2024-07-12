@@ -4,12 +4,13 @@ from restaurante.models.models import Cardapio
 
 
 class CardapioRepository:
+    # uso do scalars: o scalars é um metodo que transforma o resultado em um objeto, no caso, um objeto do tipo Cardapio
     #serao usados metodos estaticos para que não seja necessario instanciar a classe, pois não será necessario instanciar a class
     @staticmethod
     async def create_item_cardapio(db_session: AsyncSession, cardapio:Cardapio) -> Cardapio:
-        db_session.add(cardapio)
-        await db_session.commit()
-        await db_session.refresh(cardapio)
+        db_session.add(cardapio) #adciona o model ao banco
+        await db_session.commit() # commmita = sobe essa mudança
+        await db_session.refresh(cardapio) #reinicia o banco
         return cardapio
     
     @staticmethod
