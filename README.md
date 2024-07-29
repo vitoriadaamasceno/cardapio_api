@@ -42,7 +42,7 @@ Em comum:
 
     - repository : onde fica as funções que chamam o banco de dados 
 
-    - schemas : os schemas são o tratamento e serialização dos dados usando pydantic , ou seja , onde eu defino os tipo de dados que deverar ser recebido para evitar erros e conflitos com o banco.
+    - schemas : os schemas são o tratamento e serialização dos dados usando pydantic , ou seja , onde eu defino os tipo de dados que deverar ser recebido para evitar erros e conflitos com o banco. Exemplo de uso: para criar um hash da senha eu usei uma validator do pydantic então já recebemos a senha escondida.
 
     - utils:  todos os códigos auxiliares.
 
