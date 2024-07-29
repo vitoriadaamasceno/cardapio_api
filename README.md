@@ -66,13 +66,13 @@ Em comum:
 
 2. Tenha o docker instalado na sua maquina
 
-3. rode o comando make install - para instalar as dependencias
+3. rode o comando `make install` - para instalar as dependencias
 
-4. em seguida rode make db - iniciar o banco de dados
+4. em seguida rode `make db` - iniciar o banco de dados
 
-5. make run - para iniciar a api
+5. `make run` - para iniciar a api
 
-6. na rota /docs - você pode olhar a documentação
+6. na rota `/docs` - você pode olhar a documentação
 
 
 
