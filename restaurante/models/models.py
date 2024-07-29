@@ -1,8 +1,11 @@
 from sqlalchemy import Integer, String, Float, Enum, ForeignKey, TIMESTAMP, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from restaurante.contrib.model import Base
 from enum import Enum as PyEnum
+from sqlalchemy.orm import DeclarativeBase
 
+
+class Base(DeclarativeBase):
+    pass
 class Status(PyEnum):
     RECEBIDO = "RECEBIDO"
     PREPARANDO = "PREPARANDO"

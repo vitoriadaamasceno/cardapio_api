@@ -4,11 +4,11 @@ run:
 db:
 	@docker-compose up -d
 
+install:
+	@pip install -r requirements.txt
+
 stop-db:
 	@docker-compose down
-
-stop-pg:
-	@sudo systemctl stop postgresql
 
 create-migrations:
 	@PYTHONPATH=$PYTHONPATH:$(pwd) alembic revision --autogenerate -m $(name)
