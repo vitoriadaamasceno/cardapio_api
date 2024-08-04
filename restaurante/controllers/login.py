@@ -35,7 +35,7 @@ async def login(
     if not is_valid:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Credentais inválidas"
+            detail="Senha ou email inválidos"
         )
     try: #se o usuario for encontrado e a senha for valida try nao permite que o codigo seja executado caso ocorra um erro
         return UserResponse(

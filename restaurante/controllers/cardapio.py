@@ -42,7 +42,8 @@ async def add_cardapio(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=str(e)
         )
-        
+
+  
 @router.get(
     path="",
     description="Mostrar todos os items no cardapio", 

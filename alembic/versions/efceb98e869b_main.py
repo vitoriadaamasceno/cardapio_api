@@ -1,8 +1,8 @@
-"""init
+"""main
 
-Revision ID: 6649dc6f4386
+Revision ID: efceb98e869b
 Revises: 
-Create Date: 2024-07-08 23:06:22.414023
+Create Date: 2024-08-04 00:23:52.744535
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '6649dc6f4386'
+revision = 'efceb98e869b'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -23,6 +23,7 @@ def upgrade() -> None:
     sa.Column('description', sa.String(), nullable=False),
     sa.Column('name', sa.String(), nullable=False),
     sa.Column('price', sa.Float(), nullable=False),
+    sa.Column('categoria', sa.Enum('BEBIDA', 'PRATO', 'SOBREMESA', name='categoria'), nullable=False),
     sa.Column('created_at', sa.TIMESTAMP(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
@@ -40,10 +41,9 @@ def upgrade() -> None:
     )
     op.create_table('pedidos',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('descricao', sa.String(), nullable=False),
+    sa.Column('description', sa.String(), nullable=False),
     sa.Column('status', sa.Enum('RECEBIDO', 'PREPARANDO', 'EM_ENTREGA', 'ENTREGUE', 'CANCELADO', 'ATRASADO', name='status'), nullable=False),
     sa.Column('total', sa.Float(), nullable=False),
-    sa.Column('troco', sa.Float(), nullable=False),
     sa.Column('delivery_time', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.TIMESTAMP(), nullable=False),
     sa.Column('usuario_id', sa.Integer(), nullable=False),
